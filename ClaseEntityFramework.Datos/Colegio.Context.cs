@@ -13,6 +13,8 @@ namespace ClaseEntityFramework.Datos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using ClaseEntityFramework.Entidades;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ColegioContainer : DbContext
     {
@@ -29,5 +31,10 @@ namespace ClaseEntityFramework.Datos
         public virtual DbSet<Alumno> Alumno { get; set; }
         public virtual DbSet<Curso> Curso { get; set; }
         public virtual DbSet<AlumnoCurso> AlumnoCurso { get; set; }
+    
+        public virtual ObjectResult<AlumnosPorCurso> ListarCursosPorAlumno()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AlumnosPorCurso>("ListarCursosPorAlumno");
+        }
     }
 }

@@ -46,6 +46,9 @@
     <Compile Include="AlumnoCurso.cs">
       <DependentUpon>Colegio.tt</DependentUpon>
     </Compile>
+    <Compile Include="AlumnosPorCurso.cs">
+      <DependentUpon>Colegio.tt</DependentUpon>
+    </Compile>
     <Compile Include="Colegio.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

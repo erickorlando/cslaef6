@@ -52,14 +52,72 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="CursoPorAlumno.cs" />
+    <Compile Include="FrmAsignacionCursos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmAsignacionCursos.Designer.cs">
+      <DependentUpon>FrmAsignacionCursos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAsignarCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAsignarCurso.Designer.cs">
+      <DependentUpon>FrmAsignarCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListaAlumnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListaAlumnos.Designer.cs">
+      <DependentUpon>FrmListaAlumnos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListaCursos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListaCursos.Designer.cs">
+      <DependentUpon>FrmListaCursos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMntAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMntAlumno.Designer.cs">
+      <DependentUpon>FrmMntAlumno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMntCurso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMntCurso.Designer.cs">
+      <DependentUpon>FrmMntCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAsignacionCursos.resx">
+      <DependentUpon>FrmAsignacionCursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAsignarCurso.resx">
+      <DependentUpon>FrmAsignarCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListaAlumnos.resx">
+      <DependentUpon>FrmListaAlumnos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListaCursos.resx">
+      <DependentUpon>FrmListaCursos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMntAlumno.resx">
+      <DependentUpon>FrmMntAlumno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMntCurso.resx">
+      <DependentUpon>FrmMntCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -70,6 +128,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\ClaseEntityFramework.Entidades.Alumno.datasource" />
+    <None Include="Properties\DataSources\ClaseEntityFramework.Entidades.AlumnosPorCurso.datasource" />
+    <None Include="Properties\DataSources\ClaseEntityFramework.Entidades.Curso.datasource" />
+    <None Include="Properties\DataSources\CursoPorAlumno.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
