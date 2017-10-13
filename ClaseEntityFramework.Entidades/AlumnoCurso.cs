@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ClaseEntityFramework.Entidades
 {
     [Table("AlumnoCurso")]
-    public partial class AlumnoCurso
+    public partial class AlumnoCurso : EntityBase
     {
         public int AlumnoCursoId { get; set; }
 

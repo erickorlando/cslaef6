@@ -25,7 +25,10 @@ namespace ClaseEntityFramework.WindowsUI
             {
                 using (var ctx = new Colegio())
                 {
-                    alumnoBindingSource.DataSource = ctx.Alumno.ToList();
+                    alumnoBindingSource.DataSource = ctx.Alumno.
+                        Where(p => p.EstadoRegistro)
+                        .ToList();
+
                     alumnoBindingSource.ResetBindings(false);
                 }
             }
@@ -102,8 +105,9 @@ namespace ClaseEntityFramework.WindowsUI
 
                 using (var ctx = new Colegio())
                 {
+                    seleccionado.EstadoRegistro = false;
                     ctx.Set<Alumno>().Attach(seleccionado); // Añadiendo la instancia de Alumno modificado al Context.
-                    ctx.Entry(seleccionado).State = EntityState.Deleted; // El registro esta modificado.
+                    ctx.Entry(seleccionado).State = EntityState.Modified; // El registro esta modificado.
                     ctx.SaveChanges(); // UPDATE a la BD.
 
                     btnMostrar.PerformClick();
