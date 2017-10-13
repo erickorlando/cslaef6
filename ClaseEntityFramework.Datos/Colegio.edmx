@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Colegio.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ColegioStoreContainer">
+    <EntitySet Name="Alumno" EntityType="Colegio.Store.Alumno" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Curso" EntityType="Colegio.Store.Curso" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AlumnoCurso" EntityType="Colegio.Store.AlumnoCurso" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="AlumnoAlumnoCurso" Association="Colegio.Store.AlumnoAlumnoCurso">
+      <End Role="Alumno" EntitySet="Alumno" />
+      <End Role="AlumnoCurso" EntitySet="AlumnoCurso" />
+    </AssociationSet>
+    <AssociationSet Name="CursoAlumnoCurso" Association="Colegio.Store.CursoAlumnoCurso">
+      <End Role="Curso" EntitySet="Curso" />
+      <End Role="AlumnoCurso" EntitySet="AlumnoCurso" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Alumno">
+    <Key>
+      <PropertyRef Name="AlumnoId" />
+    </Key>
+    <Property Name="AlumnoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Apellidos" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Correo" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="FechaInscripcion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Curso">
+    <Key>
+      <PropertyRef Name="CursoId" />
+    </Key>
+    <Property Name="CursoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Codigo" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="NroCreditos" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AlumnoCurso">
+    <Key>
+      <PropertyRef Name="AlumnoCursoId" />
+    </Key>
+    <Property Name="AlumnoCursoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlumnoId" Type="int" Nullable="false" />
+    <Property Name="CursoId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="AlumnoAlumnoCurso">
+    <End Role="Alumno" Type="Colegio.Store.Alumno" Multiplicity="1" />
+    <End Role="AlumnoCurso" Type="Colegio.Store.AlumnoCurso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumno">
+        <PropertyRef Name="AlumnoId" />
+      </Principal>
+      <Dependent Role="AlumnoCurso">
+        <PropertyRef Name="AlumnoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CursoAlumnoCurso">
+    <End Role="Curso" Type="Colegio.Store.Curso" Multiplicity="1" />
+    <End Role="AlumnoCurso" Type="Colegio.Store.AlumnoCurso" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Curso">
+        <PropertyRef Name="CursoId" />
+      </Principal>
+      <Dependent Role="AlumnoCurso">
+        <PropertyRef Name="CursoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Colegio" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ColegioContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Alumno" EntityType="Colegio.Alumno" />
+          <EntitySet Name="Curso" EntityType="Colegio.Curso" />
+          <EntitySet Name="AlumnoCurso" EntityType="Colegio.AlumnoCurso" />
+          <AssociationSet Name="AlumnoAlumnoCurso" Association="Colegio.AlumnoAlumnoCurso">
+            <End Role="Alumno" EntitySet="Alumno" />
+            <End Role="AlumnoCurso" EntitySet="AlumnoCurso" />
+          </AssociationSet>
+          <AssociationSet Name="CursoAlumnoCurso" Association="Colegio.CursoAlumnoCurso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="AlumnoCurso" EntitySet="AlumnoCurso" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Alumno">
+          <Key>
+            <PropertyRef Name="AlumnoId" />
+          </Key>
+          <Property Name="AlumnoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="FechaInscripcion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="AlumnoCursos" Relationship="Colegio.AlumnoAlumnoCurso" FromRole="Alumno" ToRole="AlumnoCurso" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="CursoId" />
+          </Key>
+          <Property Name="CursoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="10" />
+          <Property Name="NroCreditos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AlumnoCursos" Relationship="Colegio.CursoAlumnoCurso" FromRole="Curso" ToRole="AlumnoCurso" />
+        </EntityType>
+        <EntityType Name="AlumnoCurso">
+          <Key>
+            <PropertyRef Name="AlumnoCursoId" />
+          </Key>
+          <Property Name="AlumnoCursoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Alumno" Relationship="Colegio.AlumnoAlumnoCurso" FromRole="AlumnoCurso" ToRole="Alumno" />
+          <Property Name="AlumnoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Curso" Relationship="Colegio.CursoAlumnoCurso" FromRole="AlumnoCurso" ToRole="Curso" />
+          <Property Name="CursoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="AlumnoAlumnoCurso">
+          <End Type="Colegio.Alumno" Role="Alumno" Multiplicity="1" />
+          <End Type="Colegio.AlumnoCurso" Role="AlumnoCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alumno">
+              <PropertyRef Name="AlumnoId" />
+            </Principal>
+            <Dependent Role="AlumnoCurso">
+              <PropertyRef Name="AlumnoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CursoAlumnoCurso">
+          <End Type="Colegio.Curso" Role="Curso" Multiplicity="1" />
+          <End Type="Colegio.AlumnoCurso" Role="AlumnoCurso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="CursoId" />
+            </Principal>
+            <Dependent Role="AlumnoCurso">
+              <PropertyRef Name="CursoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ColegioStoreContainer" CdmEntityContainer="ColegioContainer">
+    <EntitySetMapping Name="Alumno">
+      <EntityTypeMapping TypeName="IsTypeOf(Colegio.Alumno)">
+        <MappingFragment StoreEntitySet="Alumno">
+          <ScalarProperty Name="AlumnoId" ColumnName="AlumnoId" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="FechaInscripcion" ColumnName="FechaInscripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Curso">
+      <EntityTypeMapping TypeName="IsTypeOf(Colegio.Curso)">
+        <MappingFragment StoreEntitySet="Curso">
+          <ScalarProperty Name="CursoId" ColumnName="CursoId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="NroCreditos" ColumnName="NroCreditos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AlumnoCurso">
+      <EntityTypeMapping TypeName="IsTypeOf(Colegio.AlumnoCurso)">
+        <MappingFragment StoreEntitySet="AlumnoCurso">
+          <ScalarProperty Name="AlumnoCursoId" ColumnName="AlumnoCursoId" />
+          <ScalarProperty Name="AlumnoId" ColumnName="AlumnoId" />
+          <ScalarProperty Name="CursoId" ColumnName="CursoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
