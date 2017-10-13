@@ -49,38 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Colegio.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Colegio.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Colegio.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Colegio.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="Colegio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Colegio.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Colegio.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Colegio.edmx.diagram">
-      <DependentUpon>Colegio.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Colegio.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Colegio.Context.cs</LastGenOutput>
-      <DependentUpon>Colegio.edmx</DependentUpon>
-    </Content>
-    <Content Include="Colegio.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

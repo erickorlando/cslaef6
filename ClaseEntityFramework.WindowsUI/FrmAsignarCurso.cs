@@ -24,7 +24,7 @@ namespace ClaseEntityFramework.WindowsUI
                 {
                     Cursor.Current = Cursors.WaitCursor;
 
-                    using (var ctx = new ColegioContainer())
+                    using (var ctx = new Colegio())
                     {
                         alumnoBindingSource.DataSource = ctx.Alumno.ToList();
                         alumnoBindingSource.ResetBindings(false);
@@ -82,7 +82,7 @@ namespace ClaseEntityFramework.WindowsUI
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                using (var ctx = new ColegioContainer())
+                using (var ctx = new Colegio())
                 {
                     foreach (var cursoPorAlumno in CursosPorAlumno)
                     {

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,30 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alumno.cs">
-      <DependentUpon>Colegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AlumnoCurso.cs">
-      <DependentUpon>Colegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AlumnosPorCurso.cs">
-      <DependentUpon>Colegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Colegio.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Colegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Curso.cs">
-      <DependentUpon>Colegio.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Alumno.cs" />
+    <Compile Include="AlumnoCurso.cs" />
+    <Compile Include="AlumnosPorCurso.cs" />
+    <Compile Include="Curso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Colegio.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Colegio.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

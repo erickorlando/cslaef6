@@ -23,7 +23,7 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                using (var ctx = new ColegioContainer())
+                using (var ctx = new Colegio())
                 {
                     cursoBindingSource.DataSource = ctx.Curso.ToList();
                     cursoBindingSource.ResetBindings(false);
@@ -45,7 +45,7 @@ namespace ClaseEntityFramework.WindowsUI
                 {
                     var result = frm.ShowDialog(this);
                     if (result == DialogResult.OK)
-                        using (var ctx = new ColegioContainer())
+                        using (var ctx = new Colegio())
                         {
                             ctx.Curso.Add(curso);
                             ctx.SaveChanges();
@@ -70,7 +70,7 @@ namespace ClaseEntityFramework.WindowsUI
                 {
                     if (frm.ShowDialog(this) == DialogResult.OK)
                     {
-                        using (var ctx = new ColegioContainer())
+                        using (var ctx = new Colegio())
                         {
                             ctx.Set<Curso>().Attach(seleccionado); // Añadiendo la instancia de Alumno modificado al Context.
                             ctx.Entry(seleccionado).State = EntityState.Modified; // El registro esta modificado.
@@ -97,7 +97,7 @@ namespace ClaseEntityFramework.WindowsUI
                 if (MessageBox.Show(@"Desea eliminar el registro seleccionado?", Text, MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
-                using (var ctx = new ColegioContainer())
+                using (var ctx = new Colegio())
                 {
                     ctx.Set<Curso>().Attach(seleccionado); // Añadiendo la instancia de Alumno modificado al Context.
                     ctx.Entry(seleccionado).State = EntityState.Deleted; // El registro esta modificado.
