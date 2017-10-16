@@ -99,7 +99,7 @@
             // 
             // alumnoBindingSource
             // 
-            this.alumnoBindingSource.DataSource = typeof(ClaseEntityFramework.Entidades.Alumno);
+            this.alumnoBindingSource.DataSource = typeof(ClaseEntityFramework.LogicaNegocio.AlumnoRoot);
             // 
             // nombresTextBox
             // 

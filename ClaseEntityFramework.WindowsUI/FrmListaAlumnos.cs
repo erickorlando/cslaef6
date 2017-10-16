@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Linq;
 using System.Windows.Forms;
-using ClaseEntityFramework.Datos;
-using ClaseEntityFramework.Entidades;
+using ClaseEntityFramework.LogicaNegocio;
 
 namespace ClaseEntityFramework.WindowsUI
 {
@@ -13,7 +10,7 @@ namespace ClaseEntityFramework.WindowsUI
         {
             InitializeComponent();
 
-            Shown += (s, e) =>
+            Load += (s, e) =>
             {
                 btnMostrar.PerformClick();
             };
@@ -23,14 +20,8 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                using (var ctx = new Colegio())
-                {
-                    alumnoBindingSource.DataSource = ctx.Alumno.
-                        Where(p => p.EstadoRegistro)
-                        .ToList();
-
-                    alumnoBindingSource.ResetBindings(false);
-                }
+                alumnoReadOnlyListBindingSource.DataSource = AlumnoReadOnlyList.GetReadOnlyList(string.Empty);
+                alumnoReadOnlyListBindingSource.ResetBindings(false);
             }
             catch (Exception ex)
             {
@@ -42,22 +33,11 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                var alumno = new Alumno
-                {
-                    FechaInscripcion = DateTime.Today.AddMonths(-1)
-                };
-
-                using (var frm = new FrmMntAlumno(alumno))
+                using (var frm = new FrmMntAlumno(AlumnoRoot.NewEditableRoot()))
                 {
                     var result = frm.ShowDialog(this);
                     if (result == DialogResult.OK)
-                        using (var ctx = new Colegio())
-                        {
-                            ctx.Alumno.Add(alumno);
-                            ctx.SaveChanges();
-                            btnMostrar.PerformClick();
-                        }
-                    else btnMostrar.PerformClick();
+                        btnMostrar.PerformClick();
                 }
             }
             catch (Exception ex)
@@ -70,22 +50,12 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                if (!(alumnoBindingSource.Current is Alumno seleccionado)) return;
+                if (!(alumnoReadOnlyListBindingSource.Current is AlumnoReadOnly seleccionado)) return;
 
-                using (var frm = new FrmMntAlumno(seleccionado))
+                using (var frm = new FrmMntAlumno(AlumnoRoot.GetEditableRoot(seleccionado.Id)))
                 {
                     if (frm.ShowDialog(this) == DialogResult.OK)
-                    {
-                        using (var ctx = new Colegio())
-                        {
-                            ctx.Set<Alumno>().Attach(seleccionado); // Añadiendo la instancia de Alumno modificado al Context.
-                            ctx.Entry(seleccionado).State = EntityState.Modified; // El registro esta modificado.
-                            ctx.SaveChanges(); // UPDATE a la BD.
-
-                            btnMostrar.PerformClick();
-                        }
-                    }
-                    else btnMostrar.PerformClick();
+                        btnMostrar.PerformClick();
                 }
             }
             catch (Exception ex)
@@ -98,20 +68,14 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                if (!(alumnoBindingSource.Current is Alumno seleccionado)) return;
+                if (!(alumnoReadOnlyListBindingSource.Current is AlumnoReadOnly seleccionado)) return;
 
                 if (MessageBox.Show(@"Desea eliminar el registro seleccionado?", Text, MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
-                using (var ctx = new Colegio())
-                {
-                    seleccionado.EstadoRegistro = false;
-                    ctx.Set<Alumno>().Attach(seleccionado); // Añadiendo la instancia de Alumno modificado al Context.
-                    ctx.Entry(seleccionado).State = EntityState.Modified; // El registro esta modificado.
-                    ctx.SaveChanges(); // UPDATE a la BD.
+                AlumnoRoot.DeleteEditableRoot(seleccionado.Id);
 
-                    btnMostrar.PerformClick();
-                }
+                btnMostrar.PerformClick();
             }
             catch (Exception ex)
             {
