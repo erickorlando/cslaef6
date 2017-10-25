@@ -139,6 +139,8 @@
     <None Include="Properties\DataSources\ClaseEntityFramework.Entidades.Curso.datasource" />
     <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.AlumnoReadOnlyList.datasource" />
     <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.AlumnoRoot.datasource" />
+    <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.CursoReadOnlyList.datasource" />
+    <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.CursoRoot.datasource" />
     <None Include="Properties\DataSources\CursoPorAlumno.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

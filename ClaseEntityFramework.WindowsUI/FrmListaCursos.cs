@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Linq;
 using System.Windows.Forms;
-using ClaseEntityFramework.Datos;
-using ClaseEntityFramework.Entidades;
+using ClaseEntityFramework.LogicaNegocio;
 
 namespace ClaseEntityFramework.WindowsUI
 {
@@ -23,14 +20,9 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                using (var ctx = new Colegio())
-                {
-                    cursoBindingSource.DataSource = ctx.Curso
-                        .Where(p => p.EstadoRegistro)
-                        .ToList();
+                cursoBindingSource.DataSource = CursoReadOnlyList.GetReadOnlyList();
+                cursoBindingSource.ResetBindings(false);
 
-                    cursoBindingSource.ResetBindings(false);
-                }
             }
             catch (Exception ex)
             {
@@ -42,19 +34,11 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                var curso = new Curso();
-
-                using (var frm = new FrmMntCurso(curso))
+                using (var frm = new FrmMntCurso(CursoRoot.NewEditableRoot()))
                 {
                     var result = frm.ShowDialog(this);
                     if (result == DialogResult.OK)
-                        using (var ctx = new Colegio())
-                        {
-                            ctx.Curso.Add(curso);
-                            ctx.SaveChanges();
-                            btnMostrar.PerformClick();
-                        }
-                    else btnMostrar.PerformClick();
+                        btnMostrar.PerformClick();
                 }
             }
             catch (Exception ex)
@@ -67,22 +51,12 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                if (!(cursoBindingSource.Current is Curso seleccionado)) return;
+                if (!(cursoBindingSource.Current is CursoReadOnly seleccionado)) return;
 
-                using (var frm = new FrmMntCurso(seleccionado))
+                using (var frm = new FrmMntCurso(CursoRoot.GetEditableRoot(seleccionado.Id)))
                 {
                     if (frm.ShowDialog(this) == DialogResult.OK)
-                    {
-                        using (var ctx = new Colegio())
-                        {
-                            ctx.Set<Curso>().Attach(seleccionado); // Añadiendo la instancia de Alumno modificado al Context.
-                            ctx.Entry(seleccionado).State = EntityState.Modified; // El registro esta modificado.
-                            ctx.SaveChanges(); // UPDATE a la BD.
-
-                            btnMostrar.PerformClick();
-                        }
-                    }
-                    else btnMostrar.PerformClick();
+                        btnMostrar.PerformClick();
                 }
             }
             catch (Exception ex)
@@ -95,20 +69,14 @@ namespace ClaseEntityFramework.WindowsUI
         {
             try
             {
-                if (!(cursoBindingSource.Current is Curso seleccionado)) return;
+                if (!(cursoBindingSource.Current is CursoReadOnly seleccionado)) return;
 
                 if (MessageBox.Show(@"Desea eliminar el registro seleccionado?", Text, MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question) == DialogResult.No) return;
 
-                using (var ctx = new Colegio())
-                {
-                    seleccionado.EstadoRegistro = false;
-                    ctx.Set<Curso>().Attach(seleccionado); // Añadiendo la instancia de Alumno modificado al Context.
-                    ctx.Entry(seleccionado).State = EntityState.Modified; // El registro esta modificado.
-                    ctx.SaveChanges(); // UPDATE a la BD.
+                CursoRoot.DeleteEditableRoot(seleccionado.Id);
 
-                    btnMostrar.PerformClick();
-                }
+                btnMostrar.PerformClick();
             }
             catch (Exception ex)
             {

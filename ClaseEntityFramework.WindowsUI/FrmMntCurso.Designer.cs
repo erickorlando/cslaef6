@@ -55,6 +55,24 @@
             codigoLabel.TabIndex = 1;
             codigoLabel.Text = "Codigo:";
             // 
+            // nombreLabel
+            // 
+            nombreLabel.AutoSize = true;
+            nombreLabel.Location = new System.Drawing.Point(25, 49);
+            nombreLabel.Name = "nombreLabel";
+            nombreLabel.Size = new System.Drawing.Size(47, 13);
+            nombreLabel.TabIndex = 2;
+            nombreLabel.Text = "Nombre:";
+            // 
+            // nroCreditosLabel
+            // 
+            nroCreditosLabel.AutoSize = true;
+            nroCreditosLabel.Location = new System.Drawing.Point(25, 75);
+            nroCreditosLabel.Name = "nroCreditosLabel";
+            nroCreditosLabel.Size = new System.Drawing.Size(68, 13);
+            nroCreditosLabel.TabIndex = 4;
+            nroCreditosLabel.Text = "Nro Creditos:";
+            // 
             // codigoTextBox
             // 
             this.codigoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cursoBindingSource, "Codigo", true));
@@ -65,16 +83,7 @@
             // 
             // cursoBindingSource
             // 
-            this.cursoBindingSource.DataSource = typeof(ClaseEntityFramework.Entidades.Curso);
-            // 
-            // nombreLabel
-            // 
-            nombreLabel.AutoSize = true;
-            nombreLabel.Location = new System.Drawing.Point(25, 49);
-            nombreLabel.Name = "nombreLabel";
-            nombreLabel.Size = new System.Drawing.Size(47, 13);
-            nombreLabel.TabIndex = 2;
-            nombreLabel.Text = "Nombre:";
+            this.cursoBindingSource.DataSource = typeof(ClaseEntityFramework.LogicaNegocio.CursoRoot);
             // 
             // nombreTextBox
             // 
@@ -83,15 +92,6 @@
             this.nombreTextBox.Name = "nombreTextBox";
             this.nombreTextBox.Size = new System.Drawing.Size(210, 20);
             this.nombreTextBox.TabIndex = 3;
-            // 
-            // nroCreditosLabel
-            // 
-            nroCreditosLabel.AutoSize = true;
-            nroCreditosLabel.Location = new System.Drawing.Point(25, 75);
-            nroCreditosLabel.Name = "nroCreditosLabel";
-            nroCreditosLabel.Size = new System.Drawing.Size(68, 13);
-            nroCreditosLabel.TabIndex = 4;
-            nroCreditosLabel.Text = "Nro Creditos:";
             // 
             // nroCreditosTextBox
             // 
@@ -130,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 174);
+            this.ClientSize = new System.Drawing.Size(361, 160);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(nroCreditosLabel);
