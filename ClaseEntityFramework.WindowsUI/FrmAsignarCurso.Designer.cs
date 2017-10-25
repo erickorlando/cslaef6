@@ -29,137 +29,82 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.alumnoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            System.Windows.Forms.Label nombresLabel;
+            System.Windows.Forms.Label apellidosLabel;
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.cursoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idAlumnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idCursoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreAlumnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreCursoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.creditosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cursoPorAlumnoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cboCursos = new System.Windows.Forms.ComboBox();
+            this.cursosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.alumnoRootBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cursoNameValueListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAsignar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.alumnoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cursoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cursoPorAlumnoBindingSource)).BeginInit();
+            this.nombresTextBox = new System.Windows.Forms.TextBox();
+            this.apellidosTextBox = new System.Windows.Forms.TextBox();
+            this.lstCursos = new System.Windows.Forms.ListBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            nombresLabel = new System.Windows.Forms.Label();
+            apellidosLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.cursosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alumnoRootBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cursoNameValueListBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // nombresLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Alumno:";
+            nombresLabel.AutoSize = true;
+            nombresLabel.Location = new System.Drawing.Point(13, 19);
+            nombresLabel.Name = "nombresLabel";
+            nombresLabel.Size = new System.Drawing.Size(52, 13);
+            nombresLabel.TabIndex = 11;
+            nombresLabel.Text = "Nombres:";
             // 
-            // comboBox1
+            // apellidosLabel
             // 
-            this.comboBox1.DataSource = this.alumnoBindingSource;
-            this.comboBox1.DisplayMember = "Nombres";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(85, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(226, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.ValueMember = "AlumnoId";
-            // 
-            // alumnoBindingSource
-            // 
-            this.alumnoBindingSource.DataSource = typeof(ClaseEntityFramework.Entidades.Alumno);
+            apellidosLabel.AutoSize = true;
+            apellidosLabel.Location = new System.Drawing.Point(13, 45);
+            apellidosLabel.Name = "apellidosLabel";
+            apellidosLabel.Size = new System.Drawing.Size(52, 13);
+            apellidosLabel.TabIndex = 12;
+            apellidosLabel.Text = "Apellidos:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 70);
+            this.label2.Location = new System.Drawing.Point(13, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Curso:";
             // 
-            // comboBox2
+            // cboCursos
             // 
-            this.comboBox2.DataSource = this.cursoBindingSource;
-            this.comboBox2.DisplayMember = "Nombre";
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(85, 67);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(226, 21);
-            this.comboBox2.TabIndex = 1;
-            this.comboBox2.ValueMember = "CursoId";
+            this.cboCursos.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cursosBindingSource, "IdCurso", true));
+            this.cboCursos.DataSource = this.cursoNameValueListBindingSource;
+            this.cboCursos.DisplayMember = "Value";
+            this.cboCursos.FormattingEnabled = true;
+            this.cboCursos.Location = new System.Drawing.Point(71, 78);
+            this.cboCursos.Name = "cboCursos";
+            this.cboCursos.Size = new System.Drawing.Size(226, 21);
+            this.cboCursos.TabIndex = 1;
+            this.cboCursos.ValueMember = "Key";
             // 
-            // cursoBindingSource
+            // cursosBindingSource
             // 
-            this.cursoBindingSource.DataSource = typeof(ClaseEntityFramework.Entidades.Curso);
+            this.cursosBindingSource.DataMember = "Cursos";
+            this.cursosBindingSource.DataSource = this.alumnoRootBindingSource;
             // 
-            // dataGridView1
+            // alumnoRootBindingSource
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idAlumnoDataGridViewTextBoxColumn,
-            this.idCursoDataGridViewTextBoxColumn,
-            this.nombreAlumnoDataGridViewTextBoxColumn,
-            this.nombreCursoDataGridViewTextBoxColumn,
-            this.creditosDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.cursoPorAlumnoBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 110);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(554, 174);
-            this.dataGridView1.TabIndex = 2;
+            this.alumnoRootBindingSource.DataSource = typeof(ClaseEntityFramework.LogicaNegocio.AlumnoRoot);
             // 
-            // idAlumnoDataGridViewTextBoxColumn
+            // cursoNameValueListBindingSource
             // 
-            this.idAlumnoDataGridViewTextBoxColumn.DataPropertyName = "IdAlumno";
-            this.idAlumnoDataGridViewTextBoxColumn.HeaderText = "IdAlumno";
-            this.idAlumnoDataGridViewTextBoxColumn.Name = "idAlumnoDataGridViewTextBoxColumn";
-            this.idAlumnoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // idCursoDataGridViewTextBoxColumn
-            // 
-            this.idCursoDataGridViewTextBoxColumn.DataPropertyName = "IdCurso";
-            this.idCursoDataGridViewTextBoxColumn.HeaderText = "IdCurso";
-            this.idCursoDataGridViewTextBoxColumn.Name = "idCursoDataGridViewTextBoxColumn";
-            this.idCursoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nombreAlumnoDataGridViewTextBoxColumn
-            // 
-            this.nombreAlumnoDataGridViewTextBoxColumn.DataPropertyName = "NombreAlumno";
-            this.nombreAlumnoDataGridViewTextBoxColumn.HeaderText = "NombreAlumno";
-            this.nombreAlumnoDataGridViewTextBoxColumn.Name = "nombreAlumnoDataGridViewTextBoxColumn";
-            this.nombreAlumnoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nombreCursoDataGridViewTextBoxColumn
-            // 
-            this.nombreCursoDataGridViewTextBoxColumn.DataPropertyName = "NombreCurso";
-            this.nombreCursoDataGridViewTextBoxColumn.HeaderText = "NombreCurso";
-            this.nombreCursoDataGridViewTextBoxColumn.Name = "nombreCursoDataGridViewTextBoxColumn";
-            this.nombreCursoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // creditosDataGridViewTextBoxColumn
-            // 
-            this.creditosDataGridViewTextBoxColumn.DataPropertyName = "Creditos";
-            this.creditosDataGridViewTextBoxColumn.HeaderText = "Creditos";
-            this.creditosDataGridViewTextBoxColumn.Name = "creditosDataGridViewTextBoxColumn";
-            this.creditosDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cursoPorAlumnoBindingSource
-            // 
-            this.cursoPorAlumnoBindingSource.DataSource = typeof(ClaseEntityFramework.WindowsUI.CursoPorAlumno);
+            this.cursoNameValueListBindingSource.DataSource = typeof(ClaseEntityFramework.LogicaNegocio.CursoNameValueList);
             // 
             // btnAsignar
             // 
-            this.btnAsignar.Location = new System.Drawing.Point(337, 65);
+            this.btnAsignar.Location = new System.Drawing.Point(312, 76);
             this.btnAsignar.Name = "btnAsignar";
             this.btnAsignar.Size = new System.Drawing.Size(75, 23);
             this.btnAsignar.TabIndex = 3;
@@ -169,16 +114,17 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(276, 290);
+            this.btnCancelar.Location = new System.Drawing.Point(207, 276);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "&Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGrabar
             // 
-            this.btnGrabar.Location = new System.Drawing.Point(195, 290);
+            this.btnGrabar.Location = new System.Drawing.Point(126, 276);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(75, 23);
             this.btnGrabar.TabIndex = 11;
@@ -186,51 +132,89 @@
             this.btnGrabar.UseVisualStyleBackColor = true;
             this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
+            // nombresTextBox
+            // 
+            this.nombresTextBox.BackColor = System.Drawing.Color.LightYellow;
+            this.nombresTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.alumnoRootBindingSource, "Nombres", true));
+            this.nombresTextBox.Location = new System.Drawing.Point(71, 16);
+            this.nombresTextBox.Name = "nombresTextBox";
+            this.nombresTextBox.ReadOnly = true;
+            this.nombresTextBox.Size = new System.Drawing.Size(226, 20);
+            this.nombresTextBox.TabIndex = 12;
+            // 
+            // apellidosTextBox
+            // 
+            this.apellidosTextBox.BackColor = System.Drawing.Color.LightYellow;
+            this.apellidosTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.alumnoRootBindingSource, "Apellidos", true));
+            this.apellidosTextBox.Location = new System.Drawing.Point(71, 42);
+            this.apellidosTextBox.Name = "apellidosTextBox";
+            this.apellidosTextBox.ReadOnly = true;
+            this.apellidosTextBox.Size = new System.Drawing.Size(226, 20);
+            this.apellidosTextBox.TabIndex = 13;
+            // 
+            // lstCursos
+            // 
+            this.lstCursos.DataSource = this.cursosBindingSource;
+            this.lstCursos.DisplayMember = "NombreCurso";
+            this.lstCursos.FormattingEnabled = true;
+            this.lstCursos.Location = new System.Drawing.Point(16, 118);
+            this.lstCursos.Name = "lstCursos";
+            this.lstCursos.Size = new System.Drawing.Size(342, 134);
+            this.lstCursos.TabIndex = 14;
+            this.lstCursos.ValueMember = "Id";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(364, 118);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 15;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // FrmAsignarCurso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(578, 322);
+            this.ClientSize = new System.Drawing.Size(469, 318);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.lstCursos);
+            this.Controls.Add(apellidosLabel);
+            this.Controls.Add(this.apellidosTextBox);
+            this.Controls.Add(nombresLabel);
+            this.Controls.Add(this.nombresTextBox);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGrabar);
             this.Controls.Add(this.btnAsignar);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cboCursos);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAsignarCurso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Asignar Curso";
-            ((System.ComponentModel.ISupportInitialize)(this.alumnoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cursoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cursoPorAlumnoBindingSource)).EndInit();
+            this.Text = "Asignar Curso al Alumno";
+            ((System.ComponentModel.ISupportInitialize)(this.cursosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alumnoRootBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cursoNameValueListBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cboCursos;
         private System.Windows.Forms.Button btnAsignar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idAlumnoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idCursoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreAlumnoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCursoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn creditosDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource cursoPorAlumnoBindingSource;
-        private System.Windows.Forms.BindingSource alumnoBindingSource;
-        private System.Windows.Forms.BindingSource cursoBindingSource;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGrabar;
+        private System.Windows.Forms.BindingSource alumnoRootBindingSource;
+        private System.Windows.Forms.TextBox nombresTextBox;
+        private System.Windows.Forms.TextBox apellidosTextBox;
+        private System.Windows.Forms.BindingSource cursosBindingSource;
+        private System.Windows.Forms.ListBox lstCursos;
+        private System.Windows.Forms.BindingSource cursoNameValueListBindingSource;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

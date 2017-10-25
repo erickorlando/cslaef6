@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ClaseEntityFramework.Datos;
+using ClaseEntityFramework.LogicaNegocio;
 
 namespace ClaseEntityFramework.WindowsUI
 {
@@ -17,11 +17,8 @@ namespace ClaseEntityFramework.WindowsUI
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                using (var ctx = new Colegio())
-                {
-                    alumnosPorCursoBindingSource.DataSource = ctx.ListarCursosPorAlumno();
-                    alumnosPorCursoBindingSource.ResetBindings(false);
-                }
+                alumnosPorCursoBindingSource.DataSource = AlumnoCursoReadOnlyList.GetReadOnlyList();
+                alumnosPorCursoBindingSource.ResetBindings(false);
 
             }
             catch (Exception ex)
@@ -36,10 +33,12 @@ namespace ClaseEntityFramework.WindowsUI
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            using (var frm = new FrmAsignarCurso())
+            if (!(alumnosPorCursoBindingSource.Current is AlumnoCursoReadOnly seleccionado)) return;
+
+            using (var frm = new FrmAsignarCurso(AlumnoRoot.GetEditableRoot(seleccionado.AlumnoId)))
             {
-                frm.ShowDialog();
-                btnMostrar.PerformClick();
+                if (frm.ShowDialog() == DialogResult.OK)
+                    btnMostrar.PerformClick();
             }
         }
     }

@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using ClaseEntityFramework.Datos;
-using ClaseEntityFramework.Entidades;
+using ClaseEntityFramework.LogicaNegocio;
 
 namespace ClaseEntityFramework.WindowsUI
 {
     public partial class FrmAsignarCurso : Form
     {
+        private AlumnoRoot _alumnoRoot;
         public List<CursoPorAlumno> CursosPorAlumno { get; set; }
 
-        public FrmAsignarCurso()
+        public FrmAsignarCurso(AlumnoRoot alumnoRoot)
         {
             InitializeComponent();
-
-            CursosPorAlumno = new List<CursoPorAlumno>();
-            cursoPorAlumnoBindingSource.DataSource = CursosPorAlumno;
+            _alumnoRoot = alumnoRoot;
 
             Shown += (s, e) =>
             {
@@ -24,13 +21,12 @@ namespace ClaseEntityFramework.WindowsUI
                 {
                     Cursor.Current = Cursors.WaitCursor;
 
-                    using (var ctx = new Colegio())
-                    {
-                        alumnoBindingSource.DataSource = ctx.Alumno.ToList();
-                        alumnoBindingSource.ResetBindings(false);
-                        cursoBindingSource.DataSource = ctx.Curso.ToList();
-                        cursoBindingSource.ResetBindings(false);
-                    }
+                    alumnoRootBindingSource.DataSource = _alumnoRoot;
+                    alumnoRootBindingSource.ResetBindings(false);
+
+                    // Llenamos el Combo.
+                    cursoNameValueListBindingSource.DataSource = CursoNameValueList.GetCursoNameValueList();
+                    cursoNameValueListBindingSource.ResetBindings(false);
 
                 }
                 catch (Exception ex)
@@ -51,19 +47,16 @@ namespace ClaseEntityFramework.WindowsUI
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                if (!(alumnoBindingSource.Current is Alumno alumnoSeleccionado)) return;
-                if (!(cursoBindingSource.Current is Curso cursoSeleccionado)) return;
+                if (!(cursoNameValueListBindingSource.Current is CursoNameValueList.NameValuePair cursoSeleccionado)) return;
 
-                CursosPorAlumno.Add(new CursoPorAlumno
-                {
-                    IdAlumno = alumnoSeleccionado.AlumnoId,
-                    IdCurso = cursoSeleccionado.CursoId,
-                    NombreAlumno = alumnoSeleccionado.Nombres,
-                    NombreCurso = cursoSeleccionado.Nombre,
-                    Creditos = cursoSeleccionado.NroCreditos
-                });
+                var alumnoCursoChild = AlumnoCursoChild.NewEditableChild();
 
-                cursoPorAlumnoBindingSource.ResetBindings(false);
+                alumnoCursoChild.IdCurso = cursoSeleccionado.Key;
+                alumnoCursoChild.NombreCurso = cursoSeleccionado.Value;
+                
+                _alumnoRoot.Cursos.Add(alumnoCursoChild);
+
+                alumnoRootBindingSource.ResetBindings(false);
 
             }
             catch (Exception ex)
@@ -82,21 +75,11 @@ namespace ClaseEntityFramework.WindowsUI
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                using (var ctx = new Colegio())
-                {
-                    foreach (var cursoPorAlumno in CursosPorAlumno)
-                    {
-                        var alumnoCurso = new AlumnoCurso
-                        {
-                            AlumnoId = cursoPorAlumno.IdAlumno,
-                            CursoId = cursoPorAlumno.IdCurso
-                        };
-                        ctx.AlumnoCurso.Add(alumnoCurso); // Añade esta instancia al contexto.
-                    }
-                    ctx.SaveChanges();
+                alumnoRootBindingSource.EndEdit();
 
-                    Close();
-                }
+                _alumnoRoot = _alumnoRoot.Save();
+
+                DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
@@ -106,6 +89,28 @@ namespace ClaseEntityFramework.WindowsUI
             {
                 Cursor.Current = Cursors.Default;
             }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!(cursosBindingSource.Current is AlumnoCursoChild seleccionado)) return;
+
+                _alumnoRoot.Cursos.Remove(seleccionado);
+
+                alumnoRootBindingSource.ResetBindings(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            alumnoRootBindingSource.CancelEdit();
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

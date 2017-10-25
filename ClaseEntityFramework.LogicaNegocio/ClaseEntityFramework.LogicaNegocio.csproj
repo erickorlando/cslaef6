@@ -53,9 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlumnoCursoChild.cs" />
+    <Compile Include="AlumnoCursoChildList.cs" />
+    <Compile Include="AlumnoCursoReadOnly.cs" />
+    <Compile Include="AlumnoCursoReadOnlyList.cs" />
     <Compile Include="AlumnoReadOnly.cs" />
     <Compile Include="AlumnoReadOnlyList.cs" />
     <Compile Include="AlumnoRoot.cs" />
+    <Compile Include="CursoNameValueList.cs" />
     <Compile Include="CursoReadOnly.cs" />
     <Compile Include="CursoReadOnlyList.cs" />
     <Compile Include="CursoRoot.cs" />

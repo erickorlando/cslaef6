@@ -68,6 +68,14 @@ namespace ClaseEntityFramework.LogicaNegocio
             set => SetProperty(TelefonoProperty, value);
         }
 
+        public static readonly PropertyInfo<AlumnoCursoChildList> CursosProperty = 
+            RegisterProperty<AlumnoCursoChildList>(c => c.Cursos, RelationshipTypes.Child);
+        public AlumnoCursoChildList Cursos
+        {
+            get { return GetProperty(CursosProperty); }
+            private set { SetProperty(CursosProperty, value); }
+        }
+
         #endregion
 
         #region Reglas de Negocio y de Validacion
@@ -110,6 +118,7 @@ namespace ClaseEntityFramework.LogicaNegocio
         {
             // Inicializamos los valores por Default.
             FechaInscripcion = DateTime.Today;
+            Cursos = AlumnoCursoChildList.NewEditableChildList();
             BusinessRules.CheckRules();
         }
 
@@ -129,6 +138,7 @@ namespace ClaseEntityFramework.LogicaNegocio
                     Telefono = alumno.Telefono;
                     FechaInscripcion = alumno.FechaInscripcion;
 
+                    Cursos = AlumnoCursoChildList.GetEditableChildList(IdAlumno);
                 }
             }
         }
@@ -152,6 +162,8 @@ namespace ClaseEntityFramework.LogicaNegocio
                     };
 
                     ctx.DbContext.Set<Alumno>().Add(alumno);
+                    ApplicationContext.LocalContext["padre"] = alumno;
+                    FieldManager.UpdateChildren(this); // Inserta, Actualiza o Elimina todos los Child.
                     ctx.DbContext.SaveChanges();
                 }
             }
@@ -176,6 +188,8 @@ namespace ClaseEntityFramework.LogicaNegocio
 
                     ctx.DbContext.Set<Alumno>().Attach(alumno);
                     ctx.DbContext.Entry(alumno).State = EntityState.Modified;
+                    ApplicationContext.LocalContext["padre"] = alumno;
+                    FieldManager.UpdateChildren(this); // Inserta, Actualiza o Elimina todos los Child.
                     ctx.DbContext.SaveChanges();
                 }
             }

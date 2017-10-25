@@ -44,12 +44,12 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.alumnosPorCursoDataGridView = new System.Windows.Forms.DataGridView();
-            this.btnNuevo = new System.Windows.Forms.Button();
-            this.btnMostrar = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnMostrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.alumnosPorCursoBindingNavigator)).BeginInit();
             this.alumnosPorCursoBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.alumnosPorCursoBindingSource)).BeginInit();
@@ -62,6 +62,7 @@
             this.alumnosPorCursoBindingNavigator.BindingSource = this.alumnosPorCursoBindingSource;
             this.alumnosPorCursoBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.alumnosPorCursoBindingNavigator.DeleteItem = null;
+            this.alumnosPorCursoBindingNavigator.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.alumnosPorCursoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -85,7 +86,7 @@
             // 
             // alumnosPorCursoBindingSource
             // 
-            this.alumnosPorCursoBindingSource.DataSource = typeof(ClaseEntityFramework.Entidades.AlumnosPorCurso);
+            this.alumnosPorCursoBindingSource.DataSource = typeof(ClaseEntityFramework.LogicaNegocio.AlumnoCursoReadOnlyList);
             // 
             // bindingNavigatorCountItem
             // 
@@ -176,26 +177,6 @@
             this.alumnosPorCursoDataGridView.Size = new System.Drawing.Size(688, 242);
             this.alumnosPorCursoDataGridView.TabIndex = 1;
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Location = new System.Drawing.Point(207, 45);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
-            this.btnNuevo.TabIndex = 11;
-            this.btnNuevo.Text = "&Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // btnMostrar
-            // 
-            this.btnMostrar.Location = new System.Drawing.Point(12, 46);
-            this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(137, 23);
-            this.btnMostrar.TabIndex = 9;
-            this.btnMostrar.Text = "Mostrar Datos";
-            this.btnMostrar.UseVisualStyleBackColor = true;
-            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
-            // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Alumno";
@@ -222,9 +203,29 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "NroCreditos";
-            this.dataGridViewTextBoxColumn5.HeaderText = "NroCreditos";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Nro. Créditos";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Location = new System.Drawing.Point(207, 45);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(157, 23);
+            this.btnNuevo.TabIndex = 11;
+            this.btnNuevo.Text = "Asignar Cursos";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnMostrar
+            // 
+            this.btnMostrar.Location = new System.Drawing.Point(12, 46);
+            this.btnMostrar.Name = "btnMostrar";
+            this.btnMostrar.Size = new System.Drawing.Size(137, 23);
+            this.btnMostrar.TabIndex = 9;
+            this.btnMostrar.Text = "Mostrar Datos";
+            this.btnMostrar.UseVisualStyleBackColor = true;
+            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
             // 
             // FrmAsignacionCursos
             // 

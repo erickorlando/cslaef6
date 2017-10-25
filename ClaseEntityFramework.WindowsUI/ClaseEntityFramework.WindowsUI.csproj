@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ComponentFactory.Krypton.Toolkit">
+      <HintPath>..\..\..\..\..\..\..\..\GitProjects\puntodeventa\packages\KryptonWinFormControls.4.4.1.0\lib\net40\ComponentFactory.Krypton.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Csla, Version=4.6.603.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
       <HintPath>..\packages\CSLA-Core.4.6.603\lib\net46\Csla.dll</HintPath>
     </Reference>
@@ -134,14 +137,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\ClaseEntityFramework.Entidades.Alumno.datasource" />
-    <None Include="Properties\DataSources\ClaseEntityFramework.Entidades.AlumnosPorCurso.datasource" />
-    <None Include="Properties\DataSources\ClaseEntityFramework.Entidades.Curso.datasource" />
+    <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.AlumnoCursoReadOnlyList.datasource" />
     <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.AlumnoReadOnlyList.datasource" />
     <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.AlumnoRoot.datasource" />
+    <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.CursoNameValueList.datasource" />
     <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.CursoReadOnlyList.datasource" />
     <None Include="Properties\DataSources\ClaseEntityFramework.LogicaNegocio.CursoRoot.datasource" />
-    <None Include="Properties\DataSources\CursoPorAlumno.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
