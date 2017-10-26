@@ -83,5 +83,10 @@ namespace ClaseEntityFramework.WindowsUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnAsignar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

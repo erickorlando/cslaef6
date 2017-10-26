@@ -82,5 +82,16 @@ namespace ClaseEntityFramework.WindowsUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnAsignar_Click(object sender, EventArgs e)
+        {
+            if (!(alumnoReadOnlyListBindingSource.Current is AlumnoReadOnly seleccionado)) return;
+
+            using (var frm = new FrmAsignarCurso(AlumnoRoot.GetEditableRoot(seleccionado.Id)))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                    btnMostrar.PerformClick();
+            }
+        }
     }
 }

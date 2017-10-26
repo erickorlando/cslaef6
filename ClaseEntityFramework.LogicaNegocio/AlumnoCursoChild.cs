@@ -8,7 +8,7 @@ using Csla.Data.EF6;
 namespace ClaseEntityFramework.LogicaNegocio
 {
     [Serializable]
-    public class AlumnoCursoChild : BusinessBase<AlumnoCursoChild>
+    public class AlumnoCursoChild : BusinessBase<AlumnoCursoChild>, IEquatable<AlumnoCursoChild>
     {
 
         public static readonly PropertyInfo<int> IdProperty = RegisterProperty<int>(c => c.Id);
@@ -120,5 +120,32 @@ namespace ClaseEntityFramework.LogicaNegocio
             }
         }
 
+        public bool Equals(AlumnoCursoChild other)
+        {
+            return other != null && other.IdCurso.Equals(IdCurso);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((AlumnoCursoChild) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return IdCurso.GetHashCode();
+        }
+
+        public static bool operator ==(AlumnoCursoChild left, AlumnoCursoChild right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(AlumnoCursoChild left, AlumnoCursoChild right)
+        {
+            return !Equals(left, right);
+        }
     }
 }

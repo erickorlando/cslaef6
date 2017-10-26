@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using ClaseEntityFramework.LogicaNegocio;
 
@@ -8,7 +7,6 @@ namespace ClaseEntityFramework.WindowsUI
     public partial class FrmAsignarCurso : Form
     {
         private AlumnoRoot _alumnoRoot;
-        public List<CursoPorAlumno> CursosPorAlumno { get; set; }
 
         public FrmAsignarCurso(AlumnoRoot alumnoRoot)
         {

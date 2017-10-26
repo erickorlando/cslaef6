@@ -79,7 +79,6 @@
             // 
             // cboCursos
             // 
-            this.cboCursos.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.cursosBindingSource, "IdCurso", true));
             this.cboCursos.DataSource = this.cursoNameValueListBindingSource;
             this.cboCursos.DisplayMember = "Value";
             this.cboCursos.FormattingEnabled = true;

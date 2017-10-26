@@ -21,6 +21,14 @@ namespace ClaseEntityFramework.LogicaNegocio
             return DataPortal.Fetch<AlumnoCursoChildList>(id);
         }
 
+        public new void Add(AlumnoCursoChild child)
+        {
+            if (Contains(child))
+                throw new InvalidOperationException("El Curso ya ha sido asignado");
+
+            base.Add(child);
+        }
+
         protected void DataPortal_Fetch(int id)
         {
             using (var ctx = DbContextManager<Colegio>.GetManager())

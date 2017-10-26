@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListaAlumnos));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.alumnoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.alumnoReadOnlyListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -42,20 +43,20 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.alumnoDataGridView = new System.Windows.Forms.DataGridView();
-            this.btnMostrar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.nombresDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.correoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaInscripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.alumnoReadOnlyListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnMostrar = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnAsignar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.alumnoBindingNavigator)).BeginInit();
             this.alumnoBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.alumnoDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alumnoReadOnlyListBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alumnoDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // alumnoBindingNavigator
@@ -64,6 +65,7 @@
             this.alumnoBindingNavigator.BindingSource = this.alumnoReadOnlyListBindingSource;
             this.alumnoBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.alumnoBindingNavigator.DeleteItem = null;
+            this.alumnoBindingNavigator.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.alumnoBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -84,6 +86,10 @@
             this.alumnoBindingNavigator.Size = new System.Drawing.Size(794, 25);
             this.alumnoBindingNavigator.TabIndex = 0;
             this.alumnoBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // alumnoReadOnlyListBindingSource
+            // 
+            this.alumnoReadOnlyListBindingSource.DataSource = typeof(ClaseEntityFramework.LogicaNegocio.AlumnoReadOnlyList);
             // 
             // bindingNavigatorCountItem
             // 
@@ -176,46 +182,6 @@
             this.alumnoDataGridView.Size = new System.Drawing.Size(754, 220);
             this.alumnoDataGridView.TabIndex = 1;
             // 
-            // btnMostrar
-            // 
-            this.btnMostrar.Location = new System.Drawing.Point(12, 43);
-            this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(137, 23);
-            this.btnMostrar.TabIndex = 2;
-            this.btnMostrar.Text = "Mostrar Datos";
-            this.btnMostrar.UseVisualStyleBackColor = true;
-            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Location = new System.Drawing.Point(207, 42);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
-            this.btnNuevo.TabIndex = 3;
-            this.btnNuevo.Text = "&Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(298, 42);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 3;
-            this.btnEditar.Text = "&Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(390, 42);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 4;
-            this.btnEliminar.Text = "&Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
             // nombresDataGridViewTextBoxColumn
             // 
             this.nombresDataGridViewTextBoxColumn.DataPropertyName = "Nombres";
@@ -256,15 +222,62 @@
             this.fechaInscripcionDataGridViewTextBoxColumn.ReadOnly = true;
             this.fechaInscripcionDataGridViewTextBoxColumn.Width = 106;
             // 
-            // alumnoReadOnlyListBindingSource
+            // btnMostrar
             // 
-            this.alumnoReadOnlyListBindingSource.DataSource = typeof(ClaseEntityFramework.LogicaNegocio.AlumnoReadOnlyList);
+            this.btnMostrar.Location = new System.Drawing.Point(12, 43);
+            this.btnMostrar.Name = "btnMostrar";
+            this.btnMostrar.Size = new System.Drawing.Size(137, 23);
+            this.btnMostrar.TabIndex = 2;
+            this.btnMostrar.Text = "Mostrar Datos";
+            this.btnMostrar.UseVisualStyleBackColor = true;
+            this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Location = new System.Drawing.Point(207, 42);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.TabIndex = 3;
+            this.btnNuevo.Text = "&Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(298, 42);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.TabIndex = 3;
+            this.btnEditar.Text = "&Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.Location = new System.Drawing.Point(390, 42);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.TabIndex = 4;
+            this.btnEliminar.Text = "&Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnAsignar
+            // 
+            this.btnAsignar.Location = new System.Drawing.Point(486, 43);
+            this.btnAsignar.Name = "btnAsignar";
+            this.btnAsignar.Size = new System.Drawing.Size(134, 23);
+            this.btnAsignar.TabIndex = 13;
+            this.btnAsignar.Text = "&Asignar Cursos";
+            this.btnAsignar.UseVisualStyleBackColor = true;
+            this.btnAsignar.Click += new System.EventHandler(this.btnAsignar_Click);
             // 
             // FrmListaAlumnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(794, 330);
+            this.Controls.Add(this.btnAsignar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnNuevo);
@@ -277,8 +290,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.alumnoBindingNavigator)).EndInit();
             this.alumnoBindingNavigator.ResumeLayout(false);
             this.alumnoBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.alumnoDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.alumnoReadOnlyListBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alumnoDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,6 +319,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn telefonoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaInscripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource alumnoReadOnlyListBindingSource;
+        private System.Windows.Forms.Button btnAsignar;
     }
 }
 

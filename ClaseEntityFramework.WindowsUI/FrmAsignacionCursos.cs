@@ -33,12 +33,19 @@ namespace ClaseEntityFramework.WindowsUI
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            if (!(alumnosPorCursoBindingSource.Current is AlumnoCursoReadOnly seleccionado)) return;
-
-            using (var frm = new FrmAsignarCurso(AlumnoRoot.GetEditableRoot(seleccionado.AlumnoId)))
+            try
             {
-                if (frm.ShowDialog() == DialogResult.OK)
-                    btnMostrar.PerformClick();
+                if (!(alumnosPorCursoBindingSource.Current is AlumnoCursoReadOnly seleccionado)) return;
+
+                using (var frm = new FrmAsignarCurso(AlumnoRoot.GetEditableRoot(seleccionado.AlumnoId)))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                        btnMostrar.PerformClick();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
