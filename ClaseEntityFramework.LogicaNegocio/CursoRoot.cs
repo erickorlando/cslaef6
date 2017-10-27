@@ -51,6 +51,7 @@ namespace ClaseEntityFramework.LogicaNegocio
         // Reglas de Negocio.
         protected override void AddBusinessRules()
         {
+            base.AddBusinessRules();
             BusinessRules.AddRule(new MinValue<int>(NroCreditosProperty, 1));
         }
 
@@ -73,6 +74,7 @@ namespace ClaseEntityFramework.LogicaNegocio
 
         protected override void DataPortal_Create()
         {
+            base.DataPortal_Create();
             NroCreditos = 1;
             BusinessRules.CheckRules();
         }

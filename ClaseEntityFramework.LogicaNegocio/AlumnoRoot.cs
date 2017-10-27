@@ -82,6 +82,7 @@ namespace ClaseEntityFramework.LogicaNegocio
 
         protected override void AddBusinessRules()
         {
+            base.AddBusinessRules();
             BusinessRules.AddRule(new RegExMatch(CorreoProperty,
                 Properties.Resources.mascaraEmail, Properties.Resources.MensajeErrorEmail));
 
